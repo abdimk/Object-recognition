@@ -7,7 +7,7 @@ thres = 0.70
 nms_threshold = 0.5
 
 # Path to the video file
-path = r'D:\AI\oj\Piassa to 4Kilo , Addis Ababa Walking Tour 2023.mp4' #path to the file
+path = 'src/test_cat.mp4' #path to the file
 cap = cv2.VideoCapture(path)
 
 if not cap.isOpened():
@@ -19,16 +19,19 @@ frame_skip = 5  # Adjust this to skip more frames (e.g., 5 means process every 5
 
 # Import the class names
 classNames = []
-classFile = os.path.realpath(os.path.join(os.path.dirname(__file__), '..', 'config_files', 'coco.names'))
+# classFile = os.path.realpath(os.path.join(os.path.dirname(__file__), '..', 'config_files', 'coco.names'))
+
+classFile = r'src/coco.names'
 
 # Read object classes
 with open(classFile, 'rt') as f:
     classNames = f.read().rstrip('\n').split('\n')
 
 # Import the config and weights file
-configPath = os.path.realpath(os.path.join(os.path.dirname(__file__), '..', 'config_files', 'ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt'))
-weightsPath = os.path.realpath(os.path.join(os.path.dirname(__file__), '..', 'config_files', 'frozen_inference_graph.pb'))
-
+#configPath = os.path.realpath(os.path.join(os.path.dirname(__file__), '..', 'config_files', 'ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt'))
+configPath = r'src/ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt'
+#weightsPath = os.path.realpath(os.path.join(os.path.dirname(__file__), '..', 'config_files', 'frozen_inference_graph.pb'))
+weightsPath = r'src/frozen_inference_graph.pb'
 # Set relevant parameters
 net = cv2.dnn_DetectionModel(weightsPath, configPath)
 net.setInputSize(320, 320)
