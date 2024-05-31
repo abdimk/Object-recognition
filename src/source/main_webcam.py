@@ -1,6 +1,3 @@
-#written 4 years ago committed today
-
-
 import cv2
 import numpy as np
 import os
@@ -10,7 +7,7 @@ thres = 0.70
 nms_threshold = 0.5
 
 # Path to the video file
-#path = r'D:\AI\oj\Piassa to 4Kilo , Addis Ababa Walking Tour 2023.mp4'
+path = r'D:\AI\oj\Piassa to 4Kilo , Addis Ababa Walking Tour 2023.mp4' #path to the file
 cap = cv2.VideoCapture(path)
 
 if not cap.isOpened():
@@ -70,9 +67,9 @@ while True:
             scale_y = image.shape[0] / 320
             box = [int(box[0] * scale_x), int(box[1] * scale_y), int(box[2] * scale_x), int(box[3] * scale_y)]
             
-            cv2.rectangle(image, box, color=(0, 255, 0), thickness=2)
-            cv2.putText(image, classNames[classId - 1], (box[0] + 10, box[1] + 30),
-                        cv2.FONT_HERSHEY_COMPLEX, 1, (0, 255, 0), 2)
+            cv2.rectangle(image, box, color=(255, 255, 255), thickness=2)
+            cv2.putText(image,f"{classNames[classId - 1]} {str(round(confidence, 2))}", (box[0] + 10, box[1] + 19),cv2.FONT_HERSHEY_COMPLEX, 1, (0, 255, 0), 2)
+            #cv2.putText(image, , (box[0] + 10, box[1] + 30),cv2.FONT_HERSHEY_COMPLEX, 1, (0, 255, 0), 2)
 
     # Show output
     cv2.imshow("Output", image)
